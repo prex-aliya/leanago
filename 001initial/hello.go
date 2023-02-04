@@ -1,10 +1,9 @@
 package main
 
-import (
-        "fmt"
-)
+import "fmt"
 
-func add(x int, y int) int {
+//       V removed expra int
+func add(x, y int) int {
         return x + y
 }
 
