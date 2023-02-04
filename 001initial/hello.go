@@ -2,11 +2,9 @@ package main
 
 import (
         "fmt"
-        "math/rand"
+        "math"
 )
 
 func main() {
-        rand.Seed(10)
-        fmt.Println("My Favorite Number Is",
-                rand.Intn(10))
+        fmt.Println(math.Pi)
 }
