@@ -6,9 +6,6 @@ import (
 
 
 func main() {
-        var i int
-        var f float64
-        var b bool
-        var s string
-        fmt.Printf("%v %v %v %q\n", i, f, b, s)
+        v := 42 // change me!
+        fmt.Printf("v is of type %T\n", v)
 }
