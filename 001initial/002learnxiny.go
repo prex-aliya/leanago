@@ -32,3 +32,12 @@ import (
 func main() {
         fmt.Println("Hello, World!")
 }
+
+func beyondHello() {
+        var  x int /* Declaration of a Variable */
+        x = 3 /* assigning a variable */
+
+        /* Shor declaration for declaring and assigning a variable */
+        y := 4
+
+}
