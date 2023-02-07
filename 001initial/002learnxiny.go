@@ -40,4 +40,11 @@ func beyondHello() {
         /* Shor declaration for declaring and assigning a variable */
         y := 4
 
+        sum, prod := learnMultiple(x, y)                // Function returns 2 values & needs 2 inputs
+        fmt.Println("sum: ", sum, "prod: ", prod)       // Simple output with vars
+}
+
+/* Functions can have parameters and multiple return values. */
+func learnMultiple(x, y int) (sum, prod int) {
+        return x + y, x * y /* Return two values */
 }
