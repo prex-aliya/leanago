@@ -5,23 +5,23 @@ https://learnxinyminutes.com/docs/go/
 */
 
 /* https://go.dev/doc/modules/gomod-ref
- * go.mod defines modules and its properites */
+* go.mod defines modules and its properites */
 
 
 
 // This is a single line comment
 /* Multi-
-        line comment */
+line comment */
 
 /* A build tag is a line comment strting with // +build and can be executed by
- * go build -tags="foo bar" command. Build tags are placed before the package
- * clause near or at the top of the file followed by a blank line or other line
- * comments. */
+* go build -tags="foo bar" command. Build tags are placed before the package
+* clause near or at the top of the file followed by a blank line or other line
+* comments. */
 // +build prod, dev, test
 
 
 /* A package clase starts every source file.
- * main is a specal name declaring an executable rather than a library */
+* main is a specal name declaring an executable rather than a library */
 package main
 
 /* Import declared library packages */
@@ -97,15 +97,35 @@ func learnTypes() {
         s := []int{1, 2, 3}   /* Result is a slice of len 3 */
         s = append(s, 4, 5, 6)        /* add 3 elements. slice now len 6 */
         fmt.Println(s)        /* Update slice */
-        
+
         /* To append slices, we can pass a reference to a slice or a literal
         * slice, instead of using a list of atomic elements. */
-         s = append(s, []int{7, 8, 9}...) /* Second arg is a literal slice. */
-         fmt.Println(s) /* Updated slice is now [1 2 3 4 5 6 7 8 8] */
+        s = append(s, []int{7, 8, 9}...) /* Second arg is a literal slice. */
+        fmt.Println(s) /* Updated slice is now [1 2 3 4 5 6 7 8 8] */
 
-         p, q := learnMemory()  /* Declares p, q to be type pointer to int. */
-         fmt.Println(*p, *q)    /* the * follows pointers, in this case 
-         * it points to two intagers*/
+        p, q := learnMemory()  /* Declares p, q to be type pointer to int. */
+        fmt.Println(*p, *q)    /* the * follows pointers, in this case 
+        * it points to two intagers*/
+
+        /* Mapes are a dynamicaly changeable array type, like a hashmap or
+        * dictionary */
+        m := map[string]int{"three": 3, "four": 4}
+        m["one"] = 1
+
+        /* Unused variables throw an error in go */
+        /* To circumvent this you use an underscore to discard its value. */
+        /* For Example: _ = 12 */
+        /* Usually you use it to ignore one of the return values of a function,
+        * For example, in a script you want to ignore the error value returned
+        * from os.Crate, and expect tat the file will always be created. */
+        file, _ := os.Create("output.txt")
+        fmt.Fprint(file, "This is how you write to a file")
+        file.Close()
+
+        /* Output of course counts as using a variable. */
+        fmt.Println(s, c, a4, s3, d2, m)
+
+        //learnFlowControl() /* Back into the flow */
 }
 
 func learnMemory() (p, q *int) {
