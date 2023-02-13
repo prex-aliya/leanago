@@ -68,7 +68,7 @@ func learnTypes() {
 
         /* Conversion syntax with a short declaration */
         n := byte('\n') /* byte alias for uint8 */
-        
+
         /* Arrays have size fixed compile times */
         var a4 [4]int   /* Array of 4ints, initialized to all 0 */
         a5 := [...]int{3, 1, 5, 10, 100}
@@ -80,21 +80,40 @@ func learnTypes() {
         fmt.Println(a4_cpy[0] == a4[0])
 
         /* Slices have dynamic size 
-         * Arrays and slices each have advantages but use cases for slices 
-         * are much more common. */
-         s3 := []int{4, 5, 9}   /* no ellipsis  */
-         s4 := make([]int, 4)   /* slice 4 ints, init to all 0 */
-         var d2 [][]float64     /* Declare only no allocated */
-         bs := []byte("a slice")/* Type conversion */
+        * Arrays and slices each have advantages but use cases for slices 
+        * are much more common. */
+        s3 := []int{4, 5, 9}   /* no ellipsis  */
+        s4 := make([]int, 4)   /* slice 4 ints, init to all 0 */
+        var d2 [][]float64     /* Declare only no allocated */
+        bs := []byte("a slice")/* Type conversion */
 
-         /* Slices have reference semantics */
-         s3_cpy := s3   /* Both variables point to the same instance */
-         s3_cpy[0] = 0  /*      both are then updated */
-         fmt.Println(s3_cpy[0] == s3[0])        /* Prints true */
+        /* Slices have reference semantics */
+        s3_cpy := s3   /* Both variables point to the same instance */
+        s3_cpy[0] = 0  /*      both are then updated */
+        fmt.Println(s3_cpy[0] == s3[0])        /* Prints true */
 
-         /* Slices can be appended to on demand
-          * use append() to append elements, first arg is a slice to append*/
-          s := []int{1, 2, 3}   /* Result is a slice of len 3 */
-          s = append(s, 4, 5, 6)        /* add 3 elements. slice now len 6 */
-          fmt.Println(s)        /* Update slice */
-  }
+        /* Slices can be appended to on demand
+        * use append() to append elements, first arg is a slice to append*/
+        s := []int{1, 2, 3}   /* Result is a slice of len 3 */
+        s = append(s, 4, 5, 6)        /* add 3 elements. slice now len 6 */
+        fmt.Println(s)        /* Update slice */
+        
+        /* To append slices, we can pass a reference to a slice or a literal
+        * slice, instead of using a list of atomic elements. */
+         s = append(s, []int{7, 8, 9}...) /* Second arg is a literal slice. */
+         fmt.Println(s) /* Updated slice is now [1 2 3 4 5 6 7 8 8] */
+
+         p, q := learnMemory()  /* Declares p, q to be type pointer to int. */
+         fmt.Println(*p, *q)    /* the * follows pointers, in this case 
+         * it points to two intagers*/
+}
+
+func learnMemory() (p, q *int) {
+        /* Named return values p and q have type pointer to int. */
+        p = new(int) /* Built-in function new allocates memory. */
+        /* The allocated intager slice is initialize to 0, p is not nil. */
+        s := make([]int, 20)    /* Aloocates 30 intagers in single block of memory */
+        s[3] = 7                /* Assign one of them. */
+        r := -2                 /* Assignes another local variable */
+        return &s[3], &r        /* &: takes the address of another object */
+}

@@ -22,6 +22,16 @@ there code is manly the documentation, but they do have some other documentation
 
 
 </details>
+<details>
+<summary><a href="999Projects">999Projects</a></summary>
+
+This is a file for storing projects that do not deserve, or are not big enough
+to have their own repo.
+
+# Battleship :TODO
+
+
+</details>
 
 
 # sources
